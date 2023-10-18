@@ -33,14 +33,14 @@ namespace CarWorkshop.Repositories
         {
             users.Add(user);
         }
-        public void Update(int id, string email, string number, string adress)
+        public void Update(User user)
         {
-            User userToUpdate = users.Find(c => c.Id == id);
+            User userToUpdate = users.Find(c => c.Id == user.Id);
             if (userToUpdate != null)
             {
-                userToUpdate.Email = email;
-                userToUpdate.PhoneNumber = number;
-                userToUpdate.Adress = adress;
+                userToUpdate.Email = user.Email;
+                userToUpdate.PhoneNumber = user.PhoneNumber;
+                userToUpdate.Adress = user.Adress;
             }
         }
         public void Delete(int id)
