@@ -1,15 +1,15 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Иван Десятов\\Source\\Repos\\Carsworkshop\\CarWorkshop.csproj": {}
+    "C:\\Users\\Иван Десятов\\source\\repos\\Carsworkshop\\CarWorkshop.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Иван Десятов\\Source\\Repos\\Carsworkshop\\CarWorkshop.csproj": {
+    "C:\\Users\\Иван Десятов\\source\\repos\\Carsworkshop\\CarWorkshop.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Иван Десятов\\Source\\Repos\\Carsworkshop\\CarWorkshop.csproj",
+        "projectUniqueName": "C:\\Users\\Иван Десятов\\source\\repos\\Carsworkshop\\CarWorkshop.csproj",
         "projectName": "CarWorkshop",
-        "projectPath": "C:\\Users\\Иван Десятов\\Source\\Repos\\Carsworkshop\\CarWorkshop.csproj",
+        "projectPath": "C:\\Users\\Иван Десятов\\source\\repos\\Carsworkshop\\CarWorkshop.csproj",
         "packagesPath": "C:\\Users\\Иван Десятов\\.nuget\\packages\\",
         "outputPath": "C:\\Users\\Иван Десятов\\Source\\Repos\\Carsworkshop\\obj\\",
         "projectStyle": "PackageReference",
@@ -42,6 +42,20 @@
       "frameworks": {
         "net7.0": {
           "targetAlias": "net7.0",
+          "dependencies": {
+            "Swashbuckle.AspNetCore": {
+              "target": "Package",
+              "version": "[6.5.0, )"
+            },
+            "Swashbuckle.AspNetCore.SwaggerGen": {
+              "target": "Package",
+              "version": "[6.5.0, )"
+            },
+            "Swashbuckle.AspNetCore.SwaggerUI": {
+              "target": "Package",
+              "version": "[6.5.0, )"
+            }
+          },
           "imports": [
             "net461",
             "net462",

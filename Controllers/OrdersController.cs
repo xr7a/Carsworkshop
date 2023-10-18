@@ -11,7 +11,7 @@ namespace CarWorkshop.Controllers
     public class OrdersController : ControllerBase
     {
 
-        public OrdersRepository ordersRepository;
+        private OrdersRepository ordersRepository;
         public OrdersController(OrdersRepository ordersRepository)
         {
             this.ordersRepository = ordersRepository;

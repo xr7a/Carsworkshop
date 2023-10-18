@@ -1,5 +1,4 @@
-﻿using CarWorkshop1.Class;
-namespace CarWorkshop.Class;
+﻿namespace CarWorkshop.Class
 {
     public class Order
     {
@@ -11,4 +10,5 @@ namespace CarWorkshop.Class;
         public User User { get; set; }
         public Car OrderCar { get; set; }
     }
+
 }

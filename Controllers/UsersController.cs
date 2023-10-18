@@ -11,7 +11,7 @@ namespace CarWorkshop.Controllers
     public class UsersController : ControllerBase
     {
         
-        public UsersRepository usersRepository;
+        private UsersRepository usersRepository;
         public UsersController(UsersRepository usersRepository)
         {
             this.usersRepository = usersRepository;

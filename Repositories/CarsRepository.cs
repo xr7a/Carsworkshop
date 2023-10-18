@@ -34,15 +34,15 @@ namespace CarWorkshop.Repositories
         {
             cars.Add(car);
         }
-        public void Update(int id, string Name, string Model, int YearOfRelease, string VinCode)
+        public void Update(Car car)
         {
-            Car CarToUpdate = cars.Find(c => c.CarId == id);
+            Car CarToUpdate = cars.Find(c => c.CarId == car.CarId);
             if (CarToUpdate != null)
             {
-                CarToUpdate.Name = Name;
-                CarToUpdate.Model = Model;
-                CarToUpdate.YearOfRelease = YearOfRelease;
-                CarToUpdate.VinCode = VinCode;
+                CarToUpdate.Name = car.Name;
+                CarToUpdate.Model = car.Model;
+                CarToUpdate.YearOfRelease = car.YearOfRelease;
+                CarToUpdate.VinCode = car.VinCode;
             }
         }
         public void Delete(int id)

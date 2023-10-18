@@ -11,7 +11,7 @@ namespace CarWorkshop.Controllers
     public class CarsController : ControllerBase
     {
 
-        public CarsRepository carsRepository;
+        private CarsRepository carsRepository;
         public CarsController(CarsRepository carsRepository)
         {
             this.carsRepository = carsRepository;
@@ -42,16 +42,25 @@ namespace CarWorkshop.Controllers
         public ActionResult Post(Car car)
         {
             Car carToFind = carsRepository.GetCars().Find(c => c.CarId == car.CarId);
-            if (car.CarId == carToFind.CarId || car.VinCode == carToFind.VinCode)
+            if (carToFind == null)
             {
-                return BadRequest("Автомобиль с такими данными уже существует");
+            
+                if (car.CarId < 0)
+                {
+                    return BadRequest("Не может быть id меньше 0");
+                }
+                carsRepository.Add(car);
+                return Ok("Автомобиль был добавлен в базу");
+
             }
-            if (car.CarId < 0)
+            else
             {
-                return BadRequest("Не может быть id меньше 0");
+                if (car.CarId == carToFind.CarId || car.VinCode == carToFind.VinCode)
+                {
+                    return BadRequest("Автомобиль с такими данными уже существует");
+                }
             }
-            carsRepository.Add(car);
-            return Ok("Автомобиль был добавлен в базу");
+            return Ok();
 
         }
 

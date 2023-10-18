@@ -1,8 +1,15 @@
 {
   "version": 2,
-  "dgSpecHash": "+Ah6ilpBRq/4dPeBiIovMsVRkAwWpwlmZ1bJuoSaco+LGWmNudWJvtD23z1Ru5/bo05VpoOgwsWoJBTJ3xWaNQ==",
+  "dgSpecHash": "y9JED1hjJcKeoBVdgIO1MFxRmEzw1RWzyYkjZhpRtZVaS9llQFWvZW2hwTYCHWLlazr6EGL8yaJWaw0iJOglpw==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Иван Десятов\\Source\\Repos\\Carsworkshop\\CarWorkshop.csproj",
-  "expectedPackageFiles": [],
+  "projectFilePath": "C:\\Users\\Иван Десятов\\source\\repos\\Carsworkshop\\CarWorkshop.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\Иван Десятов\\.nuget\\packages\\microsoft.extensions.apidescription.server\\6.0.5\\microsoft.extensions.apidescription.server.6.0.5.nupkg.sha512",
+    "C:\\Users\\Иван Десятов\\.nuget\\packages\\microsoft.openapi\\1.2.3\\microsoft.openapi.1.2.3.nupkg.sha512",
+    "C:\\Users\\Иван Десятов\\.nuget\\packages\\swashbuckle.aspnetcore\\6.5.0\\swashbuckle.aspnetcore.6.5.0.nupkg.sha512",
+    "C:\\Users\\Иван Десятов\\.nuget\\packages\\swashbuckle.aspnetcore.swagger\\6.5.0\\swashbuckle.aspnetcore.swagger.6.5.0.nupkg.sha512",
+    "C:\\Users\\Иван Десятов\\.nuget\\packages\\swashbuckle.aspnetcore.swaggergen\\6.5.0\\swashbuckle.aspnetcore.swaggergen.6.5.0.nupkg.sha512",
+    "C:\\Users\\Иван Десятов\\.nuget\\packages\\swashbuckle.aspnetcore.swaggerui\\6.5.0\\swashbuckle.aspnetcore.swaggerui.6.5.0.nupkg.sha512"
+  ],
   "logs": []
 }
