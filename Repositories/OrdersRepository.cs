@@ -33,14 +33,14 @@ namespace CarWorkshop.Repositories
         {
             orders.Add(order);
         }
-        public void Update(int id, string OrderTime, string OrderDescription, string OrderStatus)
+        public void Update(Order order)
         {
-            Order OrderToUpdate = orders.Find(c => c.OrderId == id);
+            Order OrderToUpdate = orders.Find(c => c.OrderId == order.OrderId);
             if (OrderToUpdate != null)
             {
-                OrderToUpdate.OrderTime = OrderTime;
-                OrderToUpdate.OrderDescription = OrderDescription;
-                OrderToUpdate.OrderStatus = OrderStatus;
+                OrderToUpdate.OrderTime = order.OrderTime;
+                OrderToUpdate.OrderDescription = order.OrderDescription;
+                OrderToUpdate.OrderStatus = order.OrderStatus;
             }
         }
         public void Delete(int id)
