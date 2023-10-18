@@ -9,11 +9,7 @@ namespace CarWorkshop.Controllers
     [ApiController]
     public class UsersController : ControllerBase
     {
-        //private UsersRepository usersRepository;
-        //public UsersController(UsersRepository usersRepository)
-        //{
-        //    this.usersRepository = usersRepository;
-        //}
+        
         public UsersRepository usersRepository;
         public UsersController(UsersRepository usersRepository)
         {
