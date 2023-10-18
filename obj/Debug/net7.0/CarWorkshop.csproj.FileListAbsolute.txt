@@ -1,0 +1,5 @@
+C:\Users\Иван Десятов\Source\Repos\Carsworkshop\obj\Debug\net7.0\CarWorkshop.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Иван Десятов\Source\Repos\Carsworkshop\obj\Debug\net7.0\CarWorkshop.AssemblyInfoInputs.cache
+C:\Users\Иван Десятов\Source\Repos\Carsworkshop\obj\Debug\net7.0\CarWorkshop.AssemblyInfo.cs
+C:\Users\Иван Десятов\Source\Repos\Carsworkshop\obj\Debug\net7.0\CarWorkshop.csproj.CoreCompileInputs.cache
+C:\Users\Иван Десятов\Source\Repos\Carsworkshop\obj\Debug\net7.0\CarWorkshop.MvcApplicationPartsAssemblyInfo.cache
