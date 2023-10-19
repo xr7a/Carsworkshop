@@ -38,6 +38,28 @@ namespace CarWorkshop.Controllers
 
         }
 
+
+        [HttpGet("UserId:int")]
+        public ActionResult GetUserCars(int id)
+        {
+
+            var UserCars = new List<Car>();
+            if(carsRepository.GetCars().Find(c => c.UserOfCar.Id == id) == null)
+            {
+                return NotFound("Такого пользователя не существует");
+            }
+            foreach(Car car in carsRepository.GetCars())
+            {
+                if(car.UserOfCar.Id == id)
+                {
+                    UserCars.Add(car);
+                }
+            }
+            return Ok(UserCars);
+        }
+    
+    
+
         [HttpPost]
         public ActionResult Post(Car car)
         {

@@ -11,7 +11,7 @@
         "projectName": "CarWorkshop",
         "projectPath": "C:\\Users\\Иван Десятов\\source\\repos\\Carsworkshop\\CarWorkshop.csproj",
         "packagesPath": "C:\\Users\\Иван Десятов\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Иван Десятов\\Source\\Repos\\Carsworkshop\\obj\\",
+        "outputPath": "C:\\Users\\Иван Десятов\\source\\repos\\Carsworkshop\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"

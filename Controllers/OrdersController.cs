@@ -38,20 +38,47 @@ namespace CarWorkshop.Controllers
 
         }
 
+        [HttpGet("UserId:int")]
+        public ActionResult GetUserCars(int id)
+        {
+
+            var UserOrders = new List<Order>();
+            if (ordersRepository.GetAllOrders().Find(c => c.User.Id == id) == null)
+            {
+                return NotFound("Такого пользователя не существует");
+            }
+            foreach (Order order in ordersRepository.GetAllOrders())
+            {
+                if (order.User.Id == id)
+                {
+                    UserOrders.Add(order);
+                }
+            }
+            return Ok(UserOrders);
+        }
+
         [HttpPost]
         public ActionResult Post(Order order)
         {
             Order orderToFind = ordersRepository.GetAllOrders().Find(c => c.OrderId == order.OrderId);
-            if (order.OrderId == orderToFind.OrderId)
+            if (orderToFind == null)
             {
-                return BadRequest("Автомобиль с такими данными уже существует");
+                if (order.OrderId < 0)
+                {
+                    return BadRequest("Не может быть id меньше 0");
+                }
+                ordersRepository.Add(order);
+                return Ok("Заказ был добавлен в базу");
+
             }
-            if (order.OrderId < 0)
+            else
             {
-                return BadRequest("Не может быть id меньше 0");
+                if (order.OrderId == orderToFind.OrderId)
+                {
+                    return BadRequest("Заказ с такими данными уже существует");
+                }
             }
-            ordersRepository.Add(order);
-            return Ok("Заказ был добавлен в базу");
+            return Ok();
 
         }
 
