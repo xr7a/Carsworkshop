@@ -39,7 +39,7 @@ namespace CarWorkshop.Controllers
         }
 
         [HttpGet("UserId:int")]
-        public ActionResult GetUserCars(int id)
+        public ActionResult GetUserOrders(int id)
         {
 
             var UserOrders = new List<Order>();
