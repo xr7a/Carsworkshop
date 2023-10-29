@@ -1,55 +1,53 @@
 ﻿
 using CarWorkshop.Class;
+using Dapper;
+using System.Data;
+
 namespace CarWorkshop.Repositories
 {
     public class OrdersRepository
     {
-        public static List<Order> orders = new List<Order>()
+
+        private IDbConnection connection;
+        public OrdersRepository(IDbConnection connection)
         {
-            new Order
-            {
-                OrderId = 0,
-                OrderTime = "09.10.2023" ,
-                OrderDescription = "Починить двигатель",
-                OrderStatus = "Выполняется",
-                OrderCar = CarsRepository.cars[0],
-                User = UsersRepository.users[0]
-            },
-            new Order
-            {
-                OrderId = 0,
-                OrderTime = "09.10.2023" ,
-                OrderDescription = "Починить двигатель",
-                OrderStatus = "Выполняется",
-                OrderCar = CarsRepository.cars[1],
-                User = UsersRepository.users[1]
-            }
-        };
+            this.connection = connection;
+        }
+
         public List<Order> GetAllOrders()
         {
-            return orders;
+            return connection.Query<Order>("SELECT * FROM orders").ToList();
         }
+
+        public Order GetOrderById(int orderId)
+        {
+            return connection.Query<Order>("SELECT * FROM orders WHERE orderId = @orderId", new { orderId }).FirstOrDefault();
+        }
+
+        public List<Order> GetOrdersByCar(int carId)
+        {
+            return connection.Query<Order>("SELECT * FROM order WHERE carId = @carId", new { carId }).ToList();
+        }
+
+        public List<Order> GetOrdersByUser(int userId)
+        {
+            return connection.Query<Order>("SELECT * FROM order WHERE userId = @userId", new {  userId }).ToList();
+        }
+
         public void Add(Order order)
         {
-            orders.Add(order);
+            var sql = @"INSERT INTO orders (orderId, orderTime, orderDescription, orderStatus, userId, carId) VALUES (@orderId, @orderTime, @orderDescription, @orderStatus, @userId, @carId)";
+            connection.Execute(sql, order);
         }
         public void Update(Order order)
         {
-            Order OrderToUpdate = orders.Find(c => c.OrderId == order.OrderId);
-            if (OrderToUpdate != null)
-            {
-                OrderToUpdate.OrderTime = order.OrderTime;
-                OrderToUpdate.OrderDescription = order.OrderDescription;
-                OrderToUpdate.OrderStatus = order.OrderStatus;
-            }
+            var sql = @"UPDATE orders SET orderTime = @orderTime, orderDescription = @orderDescription, orderStatus = @orderStatus";
+            connection.Execute(sql, order);
         }
-        public void Delete(int id)
+        public void Delete(int orderId)
         {
-            Order OrderToDelete = orders.Find(c => c.OrderId == id);
-            if (OrderToDelete != null)
-            {
-                orders.Remove(OrderToDelete);
-            }
+            var sql = "DELETE FROM orders WHERE orderId = @orderId";
+            connection.Execute(sql, new { orderId });
 
         }
     }

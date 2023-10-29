@@ -1,6 +1,8 @@
 ﻿using CarWorkshop.Repositories;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.OpenApi.Models;
+using Npgsql;
+using System.Data.Common;
 
 namespace CarWorkshop
 {
@@ -18,9 +20,16 @@ namespace CarWorkshop
         {
             services.AddMvc();
             services.AddControllers();
+
+
             services.AddSingleton<UsersRepository>();
             services.AddSingleton<CarsRepository>();
             services.AddSingleton<OrdersRepository>();
+
+            services.AddTransient<DbConnection>(s => new NpgsqlConnection("postgres://admin:admin@localhost:5431/production"));
+            services.AddTransient<DbConnection>(s => new NpgsqlConnection("Server=localhost:5431;Database=production;User Id=admin;Password=admin;"));
+
+
             services.AddEndpointsApiExplorer();
             services.AddSwaggerGen(c =>
             {

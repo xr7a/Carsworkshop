@@ -1,36 +1,27 @@
 {
   "version": 2,
-  "dgSpecHash": "VXkngQ7rCIsIQjCLGWTHTTU6LMeoH31ReNs6MD/VCTD2hz2dQGYUvRSvQazRC2UeXGzrEFNPYYcNzlOnh1Fc+A==",
-  "success": false,
-  "projectFilePath": "C:\\Users\\Иван Десятов\\Source\\Repos\\Carsworkshop\\CarWorkshop.csproj",
-  "expectedPackageFiles": [],
-  "logs": [
-    {
-      "code": "NU1100",
-      "level": "Error",
-      "message": "Не удалось разрешить \"Swashbuckle.AspNetCore.SwaggerUI (>= 6.5.0)\" для \"net7.0\". PackageSourceMapping включен, следующие источники не рассматривались: Microsoft Visual Studio Offline Packages, nuget.org.",
-      "libraryId": "Swashbuckle.AspNetCore.SwaggerUI",
-      "targetGraphs": [
-        "net7.0"
-      ]
-    },
-    {
-      "code": "NU1100",
-      "level": "Error",
-      "message": "Не удалось разрешить \"Swashbuckle.AspNetCore (>= 6.5.0)\" для \"net7.0\". PackageSourceMapping включен, следующие источники не рассматривались: Microsoft Visual Studio Offline Packages, nuget.org.",
-      "libraryId": "Swashbuckle.AspNetCore",
-      "targetGraphs": [
-        "net7.0"
-      ]
-    },
-    {
-      "code": "NU1100",
-      "level": "Error",
-      "message": "Не удалось разрешить \"Swashbuckle.AspNetCore.SwaggerGen (>= 6.5.0)\" для \"net7.0\". PackageSourceMapping включен, следующие источники не рассматривались: Microsoft Visual Studio Offline Packages, nuget.org.",
-      "libraryId": "Swashbuckle.AspNetCore.SwaggerGen",
-      "targetGraphs": [
-        "net7.0"
-      ]
-    }
-  ]
+  "dgSpecHash": "vX6wE1jZnmHpOu2hW70axhGuikLa1Hn7RscTRSRrGr0xBQLhzrN/Jfkv3HGPFltH+Zw1SgdNkPfo+PGQU8RB/Q==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\Иван Десятов\\source\\repos\\Carsworkshop\\CarWorkshop.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\Иван Десятов\\.nuget\\packages\\dapper\\2.1.15\\dapper.2.1.15.nupkg.sha512",
+    "C:\\Users\\Иван Десятов\\.nuget\\packages\\fluentmigrator\\3.3.2\\fluentmigrator.3.3.2.nupkg.sha512",
+    "C:\\Users\\Иван Десятов\\.nuget\\packages\\fluentmigrator.abstractions\\3.3.2\\fluentmigrator.abstractions.3.3.2.nupkg.sha512",
+    "C:\\Users\\Иван Десятов\\.nuget\\packages\\microsoft.extensions.apidescription.server\\6.0.5\\microsoft.extensions.apidescription.server.6.0.5.nupkg.sha512",
+    "C:\\Users\\Иван Десятов\\.nuget\\packages\\microsoft.extensions.dependencyinjection\\2.0.0\\microsoft.extensions.dependencyinjection.2.0.0.nupkg.sha512",
+    "C:\\Users\\Иван Десятов\\.nuget\\packages\\microsoft.extensions.dependencyinjection.abstractions\\2.0.0\\microsoft.extensions.dependencyinjection.abstractions.2.0.0.nupkg.sha512",
+    "C:\\Users\\Иван Десятов\\.nuget\\packages\\microsoft.extensions.logging.abstractions\\6.0.0\\microsoft.extensions.logging.abstractions.6.0.0.nupkg.sha512",
+    "C:\\Users\\Иван Десятов\\.nuget\\packages\\microsoft.extensions.options\\2.0.1\\microsoft.extensions.options.2.0.1.nupkg.sha512",
+    "C:\\Users\\Иван Десятов\\.nuget\\packages\\microsoft.extensions.primitives\\2.0.0\\microsoft.extensions.primitives.2.0.0.nupkg.sha512",
+    "C:\\Users\\Иван Десятов\\.nuget\\packages\\microsoft.openapi\\1.2.3\\microsoft.openapi.1.2.3.nupkg.sha512",
+    "C:\\Users\\Иван Десятов\\.nuget\\packages\\npgsql\\7.0.6\\npgsql.7.0.6.nupkg.sha512",
+    "C:\\Users\\Иван Десятов\\.nuget\\packages\\swashbuckle.aspnetcore\\6.5.0\\swashbuckle.aspnetcore.6.5.0.nupkg.sha512",
+    "C:\\Users\\Иван Десятов\\.nuget\\packages\\swashbuckle.aspnetcore.swagger\\6.5.0\\swashbuckle.aspnetcore.swagger.6.5.0.nupkg.sha512",
+    "C:\\Users\\Иван Десятов\\.nuget\\packages\\swashbuckle.aspnetcore.swaggergen\\6.5.0\\swashbuckle.aspnetcore.swaggergen.6.5.0.nupkg.sha512",
+    "C:\\Users\\Иван Десятов\\.nuget\\packages\\swashbuckle.aspnetcore.swaggerui\\6.5.0\\swashbuckle.aspnetcore.swaggerui.6.5.0.nupkg.sha512",
+    "C:\\Users\\Иван Десятов\\.nuget\\packages\\system.componentmodel.annotations\\4.4.1\\system.componentmodel.annotations.4.4.1.nupkg.sha512",
+    "C:\\Users\\Иван Десятов\\.nuget\\packages\\system.runtime.compilerservices.unsafe\\6.0.0\\system.runtime.compilerservices.unsafe.6.0.0.nupkg.sha512",
+    "C:\\Users\\Иван Десятов\\.nuget\\packages\\system.valuetuple\\4.4.0\\system.valuetuple.4.4.0.nupkg.sha512"
+  ],
+  "logs": []
 }

@@ -16,12 +16,13 @@ namespace CarWorkshop.Controllers
         {
             this.ordersRepository = ordersRepository;
         }
+
         [HttpGet]
         public ActionResult Get()
         {
             if (ordersRepository.GetAllOrders() == null)
             {
-                return NotFound("Заказы отсутсвуют");
+                return StatusCode(404,"Заказы отсутсвуют");
             }
             return Ok(ordersRepository.GetAllOrders());
         }
@@ -29,10 +30,10 @@ namespace CarWorkshop.Controllers
         [HttpGet("id:int")]
         public ActionResult Get(int id)
         {
-            Order orderToFind = ordersRepository.GetAllOrders().Find(c => c.OrderId == id);
+            Order orderToFind = ordersRepository.GetOrderById(id);
             if (orderToFind == null)
             {
-                return NotFound("Заказ не найден");
+                return StatusCode(404,"Заказ не найден");
             }
             return Ok(orderToFind);
 
@@ -41,63 +42,53 @@ namespace CarWorkshop.Controllers
         [HttpGet("UserId:int")]
         public ActionResult GetUserOrders(int id)
         {
+            if (ordersRepository.GetOrdersByUser(id) != null)
+            {
+                return Ok(ordersRepository.GetOrdersByUser(id));
+            }
+            return StatusCode(404);
+        }
 
-            var UserOrders = new List<Order>();
-            if (ordersRepository.GetAllOrders().Find(c => c.User.Id == id) == null)
+        [HttpGet("CarId:int")]
+        public ActionResult GetCarOrders(int id)
+        {
+            if (ordersRepository.GetOrdersByCar(id) != null)
             {
-                return NotFound("Такого пользователя не существует");
+                return Ok(ordersRepository.GetOrdersByCar(id));
             }
-            foreach (Order order in ordersRepository.GetAllOrders())
-            {
-                if (order.User.Id == id)
-                {
-                    UserOrders.Add(order);
-                }
-            }
-            return Ok(UserOrders);
+            return StatusCode(404);
         }
 
         [HttpPost]
         public ActionResult Post(Order order)
         {
-            Order orderToFind = ordersRepository.GetAllOrders().Find(c => c.OrderId == order.OrderId);
-            if (orderToFind == null)
+            Order orderToFind = ordersRepository.GetOrderById(order.orderId);
+            if (orderToFind != null)
             {
-                if (order.OrderId < 0)
-                {
-                    return BadRequest("Не может быть id меньше 0");
-                }
-                ordersRepository.Add(order);
-                return Ok("Заказ был добавлен в базу");
-
+                return StatusCode(400, "Такой заказ уже существует!");
             }
-            else
-            {
-                if (order.OrderId == orderToFind.OrderId)
-                {
-                    return BadRequest("Заказ с такими данными уже существует");
-                }
-            }
-            return Ok();
+            ordersRepository.Add(order);
+            return Ok("Заказ был добавлен в базу");
 
         }
 
         [HttpPut]
         public ActionResult Put(Order order)
         {
-            if (ordersRepository.GetAllOrders().Find(c => c.OrderId == order.OrderId) == null)
+            if (ordersRepository.GetOrderById(order.orderId) == null)
             {
-                return NotFound("Заказа с таким id не существует");
+                return StatusCode(404,"Заказа с таким id не существует");
             }
             ordersRepository.Update(order);
-            return Ok($"Заказ с id {order.OrderId} был обновлен");
+            return Ok($"Заказ с id {order.orderId} был обновлен");
         }
+
         [HttpDelete]
         public ActionResult Delete(int id)
         {
-            if (ordersRepository.GetAllOrders().Find(c => c.OrderId == id) == null)
+            if (ordersRepository.GetOrderById(id) == null)
             {
-                return NotFound("Заказа с таким id не существует");
+                return StatusCode(404,"Заказа с таким id не существует");
             }
             ordersRepository.Delete(id);
             return Ok($"Заказ с id {id} был удален");

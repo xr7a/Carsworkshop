@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using CarWorkshop.Class;
 using CarWorkshop.Repositories;
+using System.Net;
 
 namespace CarWorkshop.Controllers
 {
@@ -10,29 +11,28 @@ namespace CarWorkshop.Controllers
     [ApiController]
     public class UsersController : ControllerBase
     {
-        
         private UsersRepository usersRepository;
         public UsersController(UsersRepository usersRepository)
         {
             this.usersRepository = usersRepository;
         }
         [HttpGet]
-        public ActionResult Get()
+        public ActionResult GetAllUsers()
         {
-            if (usersRepository.GetAll() == null)
+            if(usersRepository.AllCars() != null)
             {
-                return NotFound("Пользователи отсутсвуют");
+                return Ok(usersRepository.AllUsers());
             }
-        return Ok(usersRepository.GetAll());
+            return StatusCode(404);
         }
 
         [HttpGet("id:int")]
-        public ActionResult Get(int id)
+        public ActionResult GetById(int id)
         {
-            User userToFind = usersRepository.GetAll().Find(c => c.Id == id);
+            User userToFind = usersRepository.GetById(id);
             if (userToFind == null)
             {
-                return NotFound("Пользователь не найден");
+                return StatusCode(404);
             }
             return Ok(userToFind);
              
@@ -41,14 +41,10 @@ namespace CarWorkshop.Controllers
         [HttpPost]
         public ActionResult Post(User user) 
         {
-            User userToFind = usersRepository.GetAll().Find(c => c.Id == user.Id);
-            if (user.Id == userToFind.Id || user.PhoneNumber == userToFind.PhoneNumber) 
+            User userToFind = usersRepository.GetById(user.Id);
+            if (userToFind != null) 
             {
-                return BadRequest("Пользователь с такими данными уже существует");
-            }
-            if(user.Id < 0)
-            {
-                return BadRequest("Не может быть id меньше 0");
+                return StatusCode(400,"Такого пользователя не существует");
             }
             usersRepository.Add(user);
             return Ok("Пользователь был создан");
@@ -58,9 +54,9 @@ namespace CarWorkshop.Controllers
         [HttpPut]
         public ActionResult Put(User user)
         {
-            if(usersRepository.GetAll().Find(c => c.Id == user.Id) == null)
+            if(usersRepository.GetById(user.Id) == null)
             {
-                return NotFound("Пользователя с таким id не существует");
+                return StatusCode(400,"Пользователя с таким id не существует");
             }
             usersRepository.Update(user);
             return Ok($"Пользователь с id {user.Id} был обновлен");
@@ -68,9 +64,9 @@ namespace CarWorkshop.Controllers
         [HttpDelete]
         public ActionResult Delete(int id)
         {
-            if (usersRepository.GetAll().Find(c => c.Id == id) == null)
+            if (usersRepository.GetById(id) == null)
             {
-                return NotFound("Пользователя с таким id не существует");
+                return StatusCode(400,"Пользователя с таким id не существует");
             }
             usersRepository.Delete(id);
             return Ok($"Пользователь с id {id} был удален");

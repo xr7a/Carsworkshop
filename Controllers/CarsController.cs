@@ -17,22 +17,23 @@ namespace CarWorkshop.Controllers
             this.carsRepository = carsRepository;
         }
         [HttpGet]
-        public ActionResult Get()
+        public ActionResult GetAllCars()
         {
-            if (carsRepository.GetCars().Count == 0)
+            if (carsRepository.AllCars() != null)
             {
-                return StatusCode(409);
+                return Ok(carsRepository.AllCars());
             }
-            return Ok(carsRepository.GetCars());
+            return StatusCode(404);
         }
+
 
         [HttpGet("id:int")]
         public ActionResult Get(int id)
         {
-            Car carToFind = carsRepository.GetCars().Find(c => c.CarId == id);
+            Car carToFind = carsRepository.GetCarById(id);
             if (carToFind == null)
             {
-                return NotFound("Автомобиль не найден");
+                return StatusCode(404,"Автомобиль не найден");
             }
             return Ok(carToFind);
 
@@ -42,20 +43,11 @@ namespace CarWorkshop.Controllers
         [HttpGet("UserId:int")]
         public ActionResult GetUserCars(int id)
         {
-
-            var UserCars = new List<Car>();
-            if(carsRepository.GetCars().Find(c => c.UserOfCar.Id == id) == null)
+            if(carsRepository.GetCarsByUser != null)
             {
-                return NotFound("Такого пользователя не существует");
+                return Ok(carsRepository.GetCarsByUser(id));
             }
-            foreach(Car car in carsRepository.GetCars())
-            {
-                if(car.UserOfCar.Id == id)
-                {
-                    UserCars.Add(car);
-                }
-            }
-            return Ok(UserCars);
+            return StatusCode(400);
         }
     
     
@@ -63,45 +55,31 @@ namespace CarWorkshop.Controllers
         [HttpPost]
         public ActionResult Post(Car car)
         {
-            Car carToFind = carsRepository.GetCars().Find(c => c.CarId == car.CarId);
-            if (carToFind == null)
+            Car carToFind = carsRepository.GetCarById(car.carId);
+            if (carToFind != null)
             {
-            
-                if (car.CarId < 0)
-                {
-                    return BadRequest("Не может быть id меньше 0");
-                }
-                carsRepository.Add(car);
-                return Ok("Автомобиль был добавлен в базу");
-
+                return StatusCode(400, "Автомобиль с такими данными уже существует");
             }
-            else
-            {
-                if (car.CarId == carToFind.CarId || car.VinCode == carToFind.VinCode)
-                {
-                    return BadRequest("Автомобиль с такими данными уже существует");
-                }
-            }
-            return Ok();
-
+            carsRepository.Add(car);
+            return Ok("Автомобиль был добавлен в базу");
         }
 
         [HttpPut]
         public ActionResult Put(Car car)
         {
-            if (carsRepository.GetCars().Find(c => c.CarId == car.CarId) == null)
+            if (carsRepository.GetCarById(car.carId) == null)
             {
-                return NotFound("Автомобиль с таким id не существует");
+                return StatusCode(404,"Автомобиль с таким id не существует");
             }
             carsRepository.Update(car);
-            return Ok($"Автомобиль с id {car.CarId} был обновлен");
+            return Ok($"Автомобиль с id {car.carId} был обновлен");
         }
         [HttpDelete]
         public ActionResult Delete(int id)
         {
-            if (carsRepository.GetCars().Find(c => c.CarId == id) == null)
+            if (carsRepository.GetCarById == null)
             {
-                return NotFound("Автомобиля с таким id не существует");
+                return StatusCode(404,"Автомобиля с таким id не существует");
             }
             carsRepository.Delete(id);
             return Ok($"Автомобиль с id {id} был удален");

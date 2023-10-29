@@ -1,56 +1,44 @@
 ﻿using CarWorkshop.Class;
+using Dapper;
 using Microsoft.AspNetCore.Mvc;
+using System.Data;
 
 namespace CarWorkshop.Repositories
 {
     public class UsersRepository
     {
-        public static List<User> users = new List<User>
+        private IDbConnection connection;
+        
+
+        public UsersRepository(IDbConnection connection)
         {
-            new User
-            {
-                Id = 0,
-                FirstName = "Ivan",
-                LastName = "Ivanov",
-                Email = "fefl;k@yandex.ru",
-                PhoneNumber = "89240241221",
-                Adress = "Saratov, street of Peace, 106"
-            },
-            new User
-            {
-                Id = 1,
-                FirstName = "Yaroslava",
-                LastName = "Petrovna",
-                Adress = "Penza, military town, 16",
-                PhoneNumber = "89024528156"
-            }
-        };
-        public List<User> GetAll()
-        {
-            return users;
+            this.connection = connection;
         }
+
+        public List<User> AllUsers()
+        {
+            return connection.Query<User>("SELECT * FROM users").ToList();
+        }
+
+        public User GetById(int id)
+        {
+            return connection.Query<User>("SELECT * FROM users WHERE id = @id", new { id }).FirstOrDefault();
+        }
+
         public void Add(User user)
         {
-            users.Add(user);
+            string commandText = @"INSERT INTO users (id,FirstName, LastName, Email, Phone, Adress) VALUES (@id, @FirstName, @LastName, @Email, @Phone, @Adress)";
+            connection.Execute(commandText, user);
         }
         public void Update(User user)
         {
-            User userToUpdate = users.Find(c => c.Id == user.Id);
-            if (userToUpdate != null)
-            {
-                userToUpdate.Email = user.Email;
-                userToUpdate.PhoneNumber = user.PhoneNumber;
-                userToUpdate.Adress = user.Adress;
-            }
+            var sql = "UPDATE users SET FirstName = @FirstName, LastName = @LastName, Email = @Email, Phone = @Phone, Adress = @Adress"; 
+            connection.Execute(sql, user);
         }
         public void Delete(int id)
         {
-            User userToDelete = users.Find(c => c.Id == id);
-            if (userToDelete != null)
-            {
-                users.Remove(userToDelete);
-            }
-
+            var sql = "DELETE FROM users WHERE id = @id";
+            connection.Execute(sql, new {id});
         }
     }
 }

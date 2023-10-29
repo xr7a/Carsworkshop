@@ -1,58 +1,50 @@
-﻿using System.Xml.Linq;
+﻿using System.Data;
+using System.Xml.Linq;
 using CarWorkshop.Class;
+using Dapper;
 
 namespace CarWorkshop.Repositories
 {
     public class CarsRepository
     {
-        public static List<Car> cars = new List<Car>()
+        private IDbConnection connection;
+
+        public CarsRepository(IDbConnection connection)
         {
-            new Car
-            {
-                CarId = 0,
-                Name = "Mersedes Benz",
-                Model = "AMG 500",
-                YearOfRelease = 2006,
-                VinCode = "Z624034908093",
-                UserOfCar = UsersRepository.users[0]
-            },
-            new Car
-            {
-                CarId = 1,
-                Name = "Audi ",
-                Model = "A6",
-                YearOfRelease = 2016,
-                VinCode = "Z624034352081",
-                UserOfCar = UsersRepository.users[1]
-            }
-        };
-        public List<Car> GetCars()
-        {
-            return cars;
+            this.connection = connection;
         }
+
+        public List<Car> AllCars()
+        {
+            return connection.Query<Car>("SELECT * FROM cars").ToList();
+        }
+
+        public Car GetCarById(int carId)
+        {
+            return connection.Query<Car>("SELECT * FROM cars WHERE carId = @carId", new { carId }).FirstOrDefault();
+        }
+
+        public List<Car> GetCarsByUser(int userId)
+        {
+            return connection.Query<Car>("SELECT * FROM cars WHERE userId = @userId", new[] { userId }).ToList();
+        }
+
         public void Add(Car car)
         {
-            cars.Add(car);
+            string sql = @"INSERT INTO cars (carId, Name, Model, YearOfRelease, VinCode ) VALUES (@carId, @Name, @Model, @YearOfRelease, @VinCode)";
+            connection.Execute(sql, car);
         }
+
         public void Update(Car car)
         {
-            Car CarToUpdate = cars.Find(c => c.CarId == car.CarId);
-            if (CarToUpdate != null)
-            {
-                CarToUpdate.Name = car.Name;
-                CarToUpdate.Model = car.Model;
-                CarToUpdate.YearOfRelease = car.YearOfRelease;
-                CarToUpdate.VinCode = car.VinCode;
-            }
+            var sql = @"UPDATE cars SET Name = @Name, Model = @Model, YearOfRelease = @YearOfRelease";
+            connection.Execute(sql, car);
         }
-        public void Delete(int id)
-        {
-            Car CarToDelete = cars.Find(c => c.CarId == id);
-            if (CarToDelete != null)
-            {
-                cars.Remove(CarToDelete);
-            }
 
+        public void Delete(int carId)
+        {
+            var sql = @"DELETE FROM cars WHERE carId = @carId";
+            connection.Execute(sql, new { carId });
         }
     }
 }
