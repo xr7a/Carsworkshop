@@ -19,9 +19,9 @@ namespace CarWorkshop.Controllers
         [HttpGet]
         public ActionResult Get()
         {
-            if (carsRepository.GetCars() == null)
+            if (carsRepository.GetCars().Count == 0)
             {
-                return NotFound("Автомобили отсутсвуют");
+                return StatusCode(409);
             }
             return Ok(carsRepository.GetCars());
         }

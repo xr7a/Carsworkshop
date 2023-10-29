@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Иван Десятов\\source\\repos\\Carsworkshop\\CarWorkshop.csproj": {}
+    "C:\\Users\\Иван Десятов\\Source\\Repos\\Carsworkshop\\CarWorkshop.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Иван Десятов\\source\\repos\\Carsworkshop\\CarWorkshop.csproj": {
+    "C:\\Users\\Иван Десятов\\Source\\Repos\\Carsworkshop\\CarWorkshop.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Иван Десятов\\source\\repos\\Carsworkshop\\CarWorkshop.csproj",
+        "projectUniqueName": "C:\\Users\\Иван Десятов\\Source\\Repos\\Carsworkshop\\CarWorkshop.csproj",
         "projectName": "CarWorkshop",
-        "projectPath": "C:\\Users\\Иван Десятов\\source\\repos\\Carsworkshop\\CarWorkshop.csproj",
+        "projectPath": "C:\\Users\\Иван Десятов\\Source\\Repos\\Carsworkshop\\CarWorkshop.csproj",
         "packagesPath": "C:\\Users\\Иван Десятов\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Иван Десятов\\source\\repos\\Carsworkshop\\obj\\",
+        "outputPath": "C:\\Users\\Иван Десятов\\Source\\Repos\\Carsworkshop\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"

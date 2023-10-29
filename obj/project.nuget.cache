@@ -1,15 +1,36 @@
 {
   "version": 2,
-  "dgSpecHash": "jyEJQ+grhqCPsoPveV0+SyFXYmjTNNFf7QZSaSWHuq/4PnMqh5RYHCiSgJF8wLSjc4dLCK5EH1Wzta6FTuYGIQ==",
-  "success": true,
-  "projectFilePath": "C:\\Users\\Иван Десятов\\source\\repos\\Carsworkshop\\CarWorkshop.csproj",
-  "expectedPackageFiles": [
-    "C:\\Users\\Иван Десятов\\.nuget\\packages\\microsoft.extensions.apidescription.server\\6.0.5\\microsoft.extensions.apidescription.server.6.0.5.nupkg.sha512",
-    "C:\\Users\\Иван Десятов\\.nuget\\packages\\microsoft.openapi\\1.2.3\\microsoft.openapi.1.2.3.nupkg.sha512",
-    "C:\\Users\\Иван Десятов\\.nuget\\packages\\swashbuckle.aspnetcore\\6.5.0\\swashbuckle.aspnetcore.6.5.0.nupkg.sha512",
-    "C:\\Users\\Иван Десятов\\.nuget\\packages\\swashbuckle.aspnetcore.swagger\\6.5.0\\swashbuckle.aspnetcore.swagger.6.5.0.nupkg.sha512",
-    "C:\\Users\\Иван Десятов\\.nuget\\packages\\swashbuckle.aspnetcore.swaggergen\\6.5.0\\swashbuckle.aspnetcore.swaggergen.6.5.0.nupkg.sha512",
-    "C:\\Users\\Иван Десятов\\.nuget\\packages\\swashbuckle.aspnetcore.swaggerui\\6.5.0\\swashbuckle.aspnetcore.swaggerui.6.5.0.nupkg.sha512"
-  ],
-  "logs": []
+  "dgSpecHash": "VXkngQ7rCIsIQjCLGWTHTTU6LMeoH31ReNs6MD/VCTD2hz2dQGYUvRSvQazRC2UeXGzrEFNPYYcNzlOnh1Fc+A==",
+  "success": false,
+  "projectFilePath": "C:\\Users\\Иван Десятов\\Source\\Repos\\Carsworkshop\\CarWorkshop.csproj",
+  "expectedPackageFiles": [],
+  "logs": [
+    {
+      "code": "NU1100",
+      "level": "Error",
+      "message": "Не удалось разрешить \"Swashbuckle.AspNetCore.SwaggerUI (>= 6.5.0)\" для \"net7.0\". PackageSourceMapping включен, следующие источники не рассматривались: Microsoft Visual Studio Offline Packages, nuget.org.",
+      "libraryId": "Swashbuckle.AspNetCore.SwaggerUI",
+      "targetGraphs": [
+        "net7.0"
+      ]
+    },
+    {
+      "code": "NU1100",
+      "level": "Error",
+      "message": "Не удалось разрешить \"Swashbuckle.AspNetCore (>= 6.5.0)\" для \"net7.0\". PackageSourceMapping включен, следующие источники не рассматривались: Microsoft Visual Studio Offline Packages, nuget.org.",
+      "libraryId": "Swashbuckle.AspNetCore",
+      "targetGraphs": [
+        "net7.0"
+      ]
+    },
+    {
+      "code": "NU1100",
+      "level": "Error",
+      "message": "Не удалось разрешить \"Swashbuckle.AspNetCore.SwaggerGen (>= 6.5.0)\" для \"net7.0\". PackageSourceMapping включен, следующие источники не рассматривались: Microsoft Visual Studio Offline Packages, nuget.org.",
+      "libraryId": "Swashbuckle.AspNetCore.SwaggerGen",
+      "targetGraphs": [
+        "net7.0"
+      ]
+    }
+  ]
 }

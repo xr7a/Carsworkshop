@@ -1,0 +1,22 @@
+version: '3.7'
+services:
+  database:
+    image: postgres:16
+    restart: always
+    environment:                  # это перменные окружения для базы данных (штуки которые читает база данных прежде чем запуститься) их можно менять 
+      POSTGRES_USER: 'admin'      # это имя юзера, для подключения к базе, его можно поменять на любое другое 
+      POSTGRES_PASSWORD: 'admin'  # это пароль, для подключения к базе, его можно поменять на любой другое
+      POSTGRES_DB: 'production'   # это имя базы данных которая создаться при запуске базы, его можно поменять
+    networks:
+      - backend
+    ports:
+      - "5431:5432"               # База данных будет подниматься на порту 5431, лучше это не трогайте 
+    volumes:
+      - database-pg:/var/lib/postgresql/data
+  
+networks:
+  backend:
+    driver: bridge
+    
+volumes:
+  database-pg:
