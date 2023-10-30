@@ -10,14 +10,6 @@ using System;
 using System.Reflection;
 using System.Data;
 
-
-//var builder = WebApplication.CreateBuilder(args);
-//var startup = new Startup(builder.Configuration);
-//startup.ConfigureServices(builder.Services);
-//var app = builder.Build();
-//startup.Configure(app, builder.Environment);
-
-//app.Run();
 [assembly: ApiController]
 var builder = WebApplication.CreateBuilder(args);
 
@@ -33,9 +25,21 @@ builder.Services.AddSingleton<OrdersRepository>();
 
 
 builder.Services.AddTransient<IDbConnection>(s => new NpgsqlConnection("Server=localhost:5431;Database=production;User Id=admin;Password=admin;"));
+builder.Services
+    .AddFluentMigratorCore().ConfigureRunner(rb =>
+        rb.AddPostgres().
+            WithGlobalConnectionString("Server=localhost:5431;Database=production;User Id=admin;Password=admin;")
+            .ScanIn(Assembly.GetExecutingAssembly()).For
+            .Migrations())
+    .AddLogging(lb => lb.AddFluentMigratorConsole())
+    .BuildServiceProvider(false);
 
+var app = builder.Build(); ;
+using var serviceprovider = app.Services.CreateScope();
+var services = serviceprovider.ServiceProvider;
+var runner = services.GetRequiredService<IMigrationRunner>();
+runner.MigrateUp();
 
-var app = builder.Build();;
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())

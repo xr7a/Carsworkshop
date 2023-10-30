@@ -31,7 +31,7 @@ namespace CarWorkshop.Repositories
 
         public void Add(Car car)
         {
-            string sql = @"INSERT INTO cars (car_id, name, model, yearofrelease, vincode ) VALUES (@car_id, @name, @model, @yearofrelease, @vincode)";
+            string sql = @"INSERT INTO cars (car_id, user_id, name, model, yearofrelease, vincode ) VALUES (@car_id, @user_id, @name, @model, @yearofrelease, @vincode)";
             connection.Execute(sql, car);
         }
 

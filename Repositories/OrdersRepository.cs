@@ -36,7 +36,7 @@ namespace CarWorkshop.Repositories
 
         public void Add(Order order)
         {
-            var sql = @"INSERT INTO orders (order_id, ordertime, orderdescription, orderstatus, user_id, car_id) VALUES (@order_id, @ordertime, @orderdescription, @orderstatus, @user_id, @car_id)";
+            var sql = @"INSERT INTO orders (order_id, user_id, car_id, ordertime, orderdescription, orderstatus, user_id, car_id) VALUES (@order_id, @user_id, @car_id, @ordertime, @orderdescription, @orderstatus, @user_id, @car_id)";
             connection.Execute(sql, order);
         }
         public void Update(Order order)
