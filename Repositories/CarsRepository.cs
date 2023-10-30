@@ -26,7 +26,7 @@ namespace CarWorkshop.Repositories
 
         public List<Car> GetCarsByUser(int user_Id)
         {
-            return connection.Query<Car>("SELECT * FROM cars WHERE user_id = @user_id", new[] { user_Id }).ToList();
+            return connection.Query<Car>("SELECT * FROM cars WHERE user_id = @user_id", new{ user_Id }).ToList();
         }
 
         public void Add(Car car)
