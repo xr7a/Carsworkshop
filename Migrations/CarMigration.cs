@@ -15,7 +15,7 @@ namespace Migrations
                 .WithColumn("yearofrelease").AsString()
                 .WithColumn("vincode").AsString().Unique();
             Insert.IntoTable("cars")
-                .Row(new { user_id = "0", name = "Mersedes Benz", model = "AMG 500", yearofrelease = "2016", vincode = "Z624034908093" });
+                .Row(new { user_id = "1", name = "Mersedes Benz", model = "AMG 500", yearofrelease = "2016", vincode = "Z624034908093" });
         }
 
         public override void Down()
