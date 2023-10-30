@@ -2,13 +2,13 @@
 {
     public class Order
     {
-        public int orderId { get; set; }
-        public string orderTime { get; set; }
-        public string orderDescription { get; set; }
-        public string orderStatus { get; set; }
+        public int order_id { get; set; }
+        public int user_id { get; set; }
+        public int car_id { get; set; }
+        public string ordertime { get; set; }
+        public string orderdescription { get; set; }
+        public string orderstatus { get; set; }
         
-        public int userId { get; set; }
-        public int carId { get; set; }
     }
 
 }

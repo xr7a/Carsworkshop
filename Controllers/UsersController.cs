@@ -19,7 +19,7 @@ namespace CarWorkshop.Controllers
         [HttpGet]
         public ActionResult GetAllUsers()
         {
-            if(usersRepository.AllCars() != null)
+            if(usersRepository.AllUsers() != null)
             {
                 return Ok(usersRepository.AllUsers());
             }
@@ -27,9 +27,9 @@ namespace CarWorkshop.Controllers
         }
 
         [HttpGet("id:int")]
-        public ActionResult GetById(int id)
+        public ActionResult GetById(int user_id)
         {
-            User userToFind = usersRepository.GetById(id);
+            User userToFind = usersRepository.GetById(user_id);
             if (userToFind == null)
             {
                 return StatusCode(404);
@@ -41,7 +41,7 @@ namespace CarWorkshop.Controllers
         [HttpPost]
         public ActionResult Post(User user) 
         {
-            User userToFind = usersRepository.GetById(user.Id);
+            User userToFind = usersRepository.GetById(user.user_id);
             if (userToFind != null) 
             {
                 return StatusCode(400,"Такого пользователя не существует");
@@ -54,12 +54,12 @@ namespace CarWorkshop.Controllers
         [HttpPut]
         public ActionResult Put(User user)
         {
-            if(usersRepository.GetById(user.Id) == null)
+            if(usersRepository.GetById(user.user_id) == null)
             {
                 return StatusCode(400,"Пользователя с таким id не существует");
             }
             usersRepository.Update(user);
-            return Ok($"Пользователь с id {user.Id} был обновлен");
+            return Ok($"Пользователь с id {user.user_id} был обновлен");
         }
         [HttpDelete]
         public ActionResult Delete(int id)

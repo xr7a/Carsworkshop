@@ -19,31 +19,31 @@ namespace CarWorkshop.Repositories
             return connection.Query<Car>("SELECT * FROM cars").ToList();
         }
 
-        public Car GetCarById(int carId)
+        public Car GetCarById(int car_Id)
         {
-            return connection.Query<Car>("SELECT * FROM cars WHERE carId = @carId", new { carId }).FirstOrDefault();
+            return connection.Query<Car>("SELECT * FROM cars WHERE car_id = @car_id", new { car_Id }).FirstOrDefault();
         }
 
-        public List<Car> GetCarsByUser(int userId)
+        public List<Car> GetCarsByUser(int user_Id)
         {
-            return connection.Query<Car>("SELECT * FROM cars WHERE userId = @userId", new[] { userId }).ToList();
+            return connection.Query<Car>("SELECT * FROM cars WHERE user_id = @user_id", new[] { user_Id }).ToList();
         }
 
         public void Add(Car car)
         {
-            string sql = @"INSERT INTO cars (carId, Name, Model, YearOfRelease, VinCode ) VALUES (@carId, @Name, @Model, @YearOfRelease, @VinCode)";
+            string sql = @"INSERT INTO cars (car_id, name, model, yearofrelease, vincode ) VALUES (@car_id, @name, @model, @yearofrelease, @vincode)";
             connection.Execute(sql, car);
         }
 
         public void Update(Car car)
         {
-            var sql = @"UPDATE cars SET Name = @Name, Model = @Model, YearOfRelease = @YearOfRelease";
+            var sql = @"UPDATE cars SET name = @name, model = @model, yearofrelease = @yearofrelease";
             connection.Execute(sql, car);
         }
 
         public void Delete(int carId)
         {
-            var sql = @"DELETE FROM cars WHERE carId = @carId";
+            var sql = @"DELETE FROM cars WHERE car_id = @car_id";
             connection.Execute(sql, new { carId });
         }
     }

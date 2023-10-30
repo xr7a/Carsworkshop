@@ -55,7 +55,7 @@ namespace CarWorkshop.Controllers
         [HttpPost]
         public ActionResult Post(Car car)
         {
-            Car carToFind = carsRepository.GetCarById(car.carId);
+            Car carToFind = carsRepository.GetCarById(car.car_id);
             if (carToFind != null)
             {
                 return StatusCode(400, "Автомобиль с такими данными уже существует");
@@ -67,12 +67,12 @@ namespace CarWorkshop.Controllers
         [HttpPut]
         public ActionResult Put(Car car)
         {
-            if (carsRepository.GetCarById(car.carId) == null)
+            if (carsRepository.GetCarById(car.car_id) == null)
             {
                 return StatusCode(404,"Автомобиль с таким id не существует");
             }
             carsRepository.Update(car);
-            return Ok($"Автомобиль с id {car.carId} был обновлен");
+            return Ok($"Автомобиль с id {car.car_id} был обновлен");
         }
         [HttpDelete]
         public ActionResult Delete(int id)

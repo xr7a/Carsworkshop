@@ -62,7 +62,7 @@ namespace CarWorkshop.Controllers
         [HttpPost]
         public ActionResult Post(Order order)
         {
-            Order orderToFind = ordersRepository.GetOrderById(order.orderId);
+            Order orderToFind = ordersRepository.GetOrderById(order.order_id);
             if (orderToFind != null)
             {
                 return StatusCode(400, "Такой заказ уже существует!");
@@ -75,12 +75,12 @@ namespace CarWorkshop.Controllers
         [HttpPut]
         public ActionResult Put(Order order)
         {
-            if (ordersRepository.GetOrderById(order.orderId) == null)
+            if (ordersRepository.GetOrderById(order.order_id) == null)
             {
                 return StatusCode(404,"Заказа с таким id не существует");
             }
             ordersRepository.Update(order);
-            return Ok($"Заказ с id {order.orderId} был обновлен");
+            return Ok($"Заказ с id {order.order_id} был обновлен");
         }
 
         [HttpDelete]
